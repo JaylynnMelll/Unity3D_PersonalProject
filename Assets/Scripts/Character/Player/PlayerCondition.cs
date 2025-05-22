@@ -3,6 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : PlayerCondition]
+   @ Description : This class is used to manage the player's health, hunger, and stamina conditions. It handles damage, healing, and eating actions.
+   @ Attached at : Player (gameObject)
+   @ Methods : ============================================
+               [public]
+               - Die() : Handle player death.
+               - Heal(float amount) : Heal the player by a certain amount.
+               - Eat(float amount) : Increase hunger by a certain amount.
+               - TakePhysicalDamage(float damage) : Apply physical damage to the player.
+               ============================================
+               [private]
+               - DmgFromHunger() : Handle damage from hunger depletion.
+               ============================================
+*/
+
+/* [InterfaceINFO : IDamageable]
+   @ Description: This interface is used to define the damageable methods for objects that can take damage.
+   @ Methods : ============================================
+               - TakePhysicalDamage(float damage) : Apply physical damage to the object.
+               ============================================
+*/
+
 public interface IDamageable
 {
     void TakePhysicalDamage(float damage);

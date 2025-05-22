@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : DayNightCycle]
+   @ Description : This class is used to manage the day and night cycle in the game.
+   @ Attached at : DayAndNight
+   @ Methods : ============================================
+              [public]
+              - None
+              ============================================
+              [private]
+              - UpdateLighting() : Updates the lighting based on the time of day.
+              ============================================
+*/
+
 public class DayNightCycle : MonoBehaviour
 {
     // ========================== //

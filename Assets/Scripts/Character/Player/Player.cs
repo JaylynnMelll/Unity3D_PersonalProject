@@ -3,6 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : Player]
+   @ Description : This class is used to manage the player's components and events.
+   @ Attached at : Player (gameObject)
+   @ Methods : ============================================
+               [public]
+               - None
+               ============================================
+               [private]
+               - None
+               ============================================
+*/
+
 public class Player : MonoBehaviour
 {
     // ========================== //
@@ -13,6 +25,7 @@ public class Player : MonoBehaviour
     public PlayerController playerController;
     public PlayerCondition playerCondition;
     public ItemData itemData;
+    public Transform itemDropPosition;
 
     [Header("Events")]
     public Action addItem;

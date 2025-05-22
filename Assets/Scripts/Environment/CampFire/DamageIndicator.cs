@@ -4,6 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 
+/* [ClassINFO : DamageIndicator]
+   @ Description : This class is used to manage the damage indicator UI.
+   @ Attached at : UI -> DamageIndicator
+   @ Methods : =============================================
+               [public]
+               - Flash() : Flash the damage indicator when player takes damage.
+               =============================================
+               [private]
+               - FadeAway() : Coroutine to fade away the damage indicator after it flashes.
+               =============================================
+*/
+
 public class DamageIndicator : MonoBehaviour
 {
     // ========================== //

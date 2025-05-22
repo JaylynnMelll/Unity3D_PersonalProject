@@ -2,6 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : ItemObject]
+   @ Description : This class is used to hold a scriptable object item data in an item prefab.
+   @ Attached at : Item_Name(prefab)
+   @ Methods : ============================================
+               [public]
+               - GetInteractionPrompt() : Returns the interaction prompt for the item.
+               - WhenInteracted() : Handles the interaction with the item when interacted with it.
+               ============================================
+               [private]
+               - None
+               ============================================
+*/
+
+/* [InterfaceINFO : IInteractable]
+   @ Description: This interface is used to define the interaction methods for interactable objects.
+   @ Methods : ============================================
+               -GetInteractionPrompt() : Returns the interaction prompt for the object.
+               - WhenInteracted() : Handles the interaction with the object when interacted with it.
+               ============================================
+*/
+
 public interface IInteractable
 {
     public string GetInteractionPrompt();
@@ -13,7 +34,7 @@ public class ItemObject : MonoBehaviour, IInteractable
     // =========================== //
     //   [Reference to ItemData]    
     // =========================== //
-    #region
+    #region [Reference to ItemData]
     [Header("Item Data")]
     public ItemData itemData;
     #endregion
@@ -21,10 +42,10 @@ public class ItemObject : MonoBehaviour, IInteractable
     // =========================== //
     //   [IInteractable Methods]
     // =========================== //
-    #region
+    #region [IInteractable Methods]
     public string GetInteractionPrompt()
     {
-        string prompt = $"{itemData.itemName}\n{itemData.itemDescription}";
+        string prompt = $"<b>{itemData.itemName}</b>\n{itemData.itemDescription}";
         return prompt;
     }
 
