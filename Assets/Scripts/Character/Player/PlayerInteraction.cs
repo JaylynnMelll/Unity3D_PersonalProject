@@ -4,6 +4,19 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* [ClassINFO : PlayerInteraction]
+   @ Description : This class is used to handle player interactions with objects in the game world.
+   @ Attached at : Player (gameObject)
+   @ Methods : ============================================
+               [public]
+               - None
+               ============================================
+               [private]
+               - DetectInteractables() : Check for interactable objects within a certain distance from the player.
+               - SetPromptText() : Update the interaction prompt text and visibility based on the current interactable object.
+               ============================================
+*/
+
 public class PlayerInteraction : MonoBehaviour
 {
     // ========================== //
@@ -21,7 +34,7 @@ public class PlayerInteraction : MonoBehaviour
     public IInteractable currentInteractableInfo;
     public GameObject interactionPrompt;
     public TextMeshProUGUI promptText;
-    public Camera camera;
+    public Camera attachedCamera;
     #endregion
 
 
@@ -31,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
     #region [Unity LifeCycle]
     void Start()
     {
-        camera = Camera.main;
+        attachedCamera = Camera.main;
     }
     void Update()
     {
@@ -50,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
     #region [Private Methods]
     private void DetectInteractables()
     {
-        Ray ray = camera.ScreenPointToRay(new Vector3((Screen.width / 2), (Screen.height / 2)));
+        Ray ray = attachedCamera.ScreenPointToRay(new Vector3((Screen.width / 2), (Screen.height / 2)));
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, checkDistance, layerMask))

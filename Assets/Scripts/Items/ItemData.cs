@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : ItemData]
+   @ Description : This class is used to make Scriptable Object for items.
+   @ Attached at : It can't be held like a component since it's used to make scriptable Object. But it's mainly held @Item_Name(prefab) 
+*/
+
 public enum ItemType
 {
     Equipable,

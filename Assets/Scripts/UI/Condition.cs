@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* [ClassINFO : Condition]
+   @ Description : This class is used to manage the condition bars in the UI.
+   @ Attached at : UI -> ConditionsUI -> Helath, Hunger, Stamina
+   @ Methods : =============================================
+               [public]
+               - AddValue() : Add value to the current value of the condition.
+               - SubtractValue() : Subtract value from the current value of the condition.
+               =============================================
+               [private]
+               - GetGradualValue() : Update the condition bar fill amount based on current and max values.
+               =============================================
+*/
+
 public class Condition : MonoBehaviour
 {
     // ========================== //

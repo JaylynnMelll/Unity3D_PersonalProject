@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
+/* [ClassINFO : CampFire]
+   @ Description : This class is used to manage the campfire's damage to players and other damageable objects.
+   @ Attached at : CampFire (gameObject)
+   @ Methods : ============================================
+               [public]
+               - None
+               ============================================
+               [private]
+               - DealFireDamage() : Deals fire damage to all connected damageable objects.
+               - OnTriggerEnter(Collider other) : Adds damageable objects to the list when they enter the trigger.
+               - OnTriggerExit(Collider other) : Removes damageable objects from the list when they exit the trigger.
+               ============================================
+    */
+
 public class CampFire : MonoBehaviour
 {
     // ========================== //
