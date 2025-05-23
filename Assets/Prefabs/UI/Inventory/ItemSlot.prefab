@@ -126,7 +126,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1347894734994095672}
         m_TargetAssemblyTypeName: ItemSlot, Assembly-CSharp
-        m_MethodName: OnClickButton
+        m_MethodName: OnClickSlotButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 0}
-  item: {fileID: 0}
+  itemData: {fileID: 0}
   itemIndex: 0
   quantity: 0
   equipped: 0

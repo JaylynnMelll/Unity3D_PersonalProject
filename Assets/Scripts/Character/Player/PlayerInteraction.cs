@@ -49,7 +49,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         attachedCamera = Camera.main;
         rigidbody = GetComponent<Rigidbody>();
-        Debug.Log(rigidbody);
     }
     void Update()
     {

@@ -18,7 +18,8 @@ public enum ItemType
 public enum ConsumableType
 {
     Health,
-    Hunger
+    Hunger,
+    SpeedBoost,
 }
 
 // ---------------------------------------------- //
@@ -32,7 +33,7 @@ public class ConsumableItemData
 
 // ---------------------------------------------- //
 
-[CreateAssetMenu(fileName = "item", menuName = "New Item")]
+[CreateAssetMenu(fileName = "itemData", menuName = "New Item")]
 public class ItemData : ScriptableObject
 {
     [Header("Item Info")]
@@ -48,4 +49,7 @@ public class ItemData : ScriptableObject
 
     [Header("Consumable Info")]
     public ConsumableItemData[] consumables;
+
+    [Header("Equipable Info")]
+    public GameObject eqipablePrefab;
 }

@@ -27,7 +27,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     // ========================== //
-    //     [InspectorWindow]
+    //     [Inspector Window]
     // ========================== //
     #region [Inspector Window]
     [Header("Connected Components")]
@@ -112,6 +112,18 @@ public class PlayerController : MonoBehaviour
         else if (context.phase == InputActionPhase.Canceled)
         {
             currentMovement = Vector2.zero;
+        }
+    }
+
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            moveSpeed += 10f;
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            moveSpeed -= 10f;
         }
     }
        

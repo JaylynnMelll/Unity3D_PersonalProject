@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c87e740f9ad13f4bac7640fffd9c352, type: 3}
-  m_Name: Item_Wood
+  m_Name: Item_Apple
   m_EditorClassIdentifier: 
-  itemName: "\uB098\uBB34"
-  itemDescription: "\uB098\uBB34\uC5D0\uC11C \uCC44\uC9D1\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
-  itemType: 2
-  itemIcon: {fileID: 21300000, guid: a5612e17f7779374da8564e7a11d823c, type: 3}
-  itemPrefab: {fileID: 2341648090931280134, guid: cbe38d1a195db194caaa4fe46cd8825b, type: 3}
-  isStackable: 1
-  maxStackAmount: 12
+  itemName: "\uC0AC\uACFC"
+  itemDescription: "\uBA39\uC73C\uBA74 \uC77C\uC815 \uC2DC\uAC04\uB3D9\uC548 \uC18D\uB3C4\uAC00
+    \uBE68\uB77C\uC9C4\uB2E4."
+  itemType: 0
+  itemIcon: {fileID: 0}
+  itemPrefab: {fileID: 0}
+  isStackable: 0
+  maxStackAmount: 0
   consumables: []
-  equipable: 0
   eqipablePrefab: {fileID: 0}

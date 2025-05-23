@@ -18,12 +18,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     // ========================== //
-    //     [InspectorWindow]
+    //     [Inspector Window]
     // ========================== //
     #region [Inspector Window]
     [Header("Connected Components")]
     public PlayerController playerController;
     public PlayerCondition playerCondition;
+    public PlayerEquipment playerEquipment;
     public ItemData itemData;
     public Transform itemDropPosition;
 

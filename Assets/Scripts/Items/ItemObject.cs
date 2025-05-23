@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /* [ClassINFO : ItemObject]
-   @ Description : This class is used to hold a scriptable object item data in an item prefab.
+   @ Description : This class is used to hold a scriptable object itemData data in an itemData prefab.
    @ Attached at : Item_Name(prefab)
    @ Methods : ============================================
                [public]
-               - GetInteractionPrompt() : Returns the interaction prompt for the item.
-               - WhenInteracted() : Handles the interaction with the item when interacted with it.
+               - GetInteractionPrompt() : Returns the interaction prompt for the itemData.
+               - WhenInteracted() : Handles the interaction with the itemData when interacted with it.
                ============================================
                [private]
                - None

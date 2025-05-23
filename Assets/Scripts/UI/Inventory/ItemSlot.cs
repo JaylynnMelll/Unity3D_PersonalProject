@@ -7,13 +7,13 @@ using UnityEngine.UI;
 using TMPro;
 
 /* [Class : ItemSlot]
-   @ Description : This class is used to hold item data in item slots in the inventory.
+   @ Description : This class is used to hold itemData data in itemData slots in the inventory.
    @ Attached at : InventoryUI -> InventoryBG -> ItemSlots -> ItemSlot(prefab)
    @ Methods : =============================================
                [public]
-               - SetItemDataToSlot() : Set item data to the slot.
-               - ClearItemDataFromSlot() : Clear item data from the slot.
-               - OnClickButton() : Handle button click event for the item slot.
+               - SetItemDataToSlot() : Set itemData data to the slot.
+               - ClearItemDataFromSlot() : Clear itemData data from the slot.
+               - OnClickSlotButton() : Handle button click event for the itemData slot.
                =============================================
                [private]
                - None
@@ -31,7 +31,7 @@ public class ItemSlot : MonoBehaviour
     private ButtonTracker buttonTracker;
 
     [Header("Item Slot Settings")]
-    public ItemData item;
+    public ItemData itemData;
     public int itemIndex;
     public int quantity;
     public bool equipped;
@@ -52,7 +52,6 @@ public class ItemSlot : MonoBehaviour
     {
         equippedOutline = GetComponent<Outline>();
         buttonTracker = GetComponentInParent<ButtonTracker>();
-        Debug.Log("ButtonTracker : " + buttonTracker);
     }
 
     private void OnEnable()
@@ -69,7 +68,7 @@ public class ItemSlot : MonoBehaviour
     public void SetItemDataToSlot()
     {
         itemIcon.gameObject.SetActive(true);
-        itemIcon.sprite = item.itemIcon;
+        itemIcon.sprite = itemData.itemIcon;
         quantityText.text = quantity > 1 ? quantity.ToString() : string.Empty;
 
         if(equippedOutline != null) equippedOutline.enabled = equipped;
@@ -77,12 +76,12 @@ public class ItemSlot : MonoBehaviour
 
     public void ClearItemDataFromSlot()
     {
-        item = null;
+        itemData = null;
         itemIcon.gameObject.SetActive(false);
         quantityText.text = string.Empty;
     }
 
-    public void OnClickButton()
+    public void OnClickSlotButton()
     {
         buttonTracker.TrackClickedButton();
         inventory.SelectItem(itemIndex);

@@ -20,3 +20,5 @@ MonoBehaviour:
   isStackable: 0
   maxStackAmount: 0
   consumables: []
+  equipable: 2
+  eqipablePrefab: {fileID: 4421604177154404648, guid: a9060fd072330e048b18e7b1c2d8c011, type: 3}

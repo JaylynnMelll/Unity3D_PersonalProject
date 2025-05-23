@@ -5,25 +5,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /* [ClassINFO : InventoryUI]
-   @ Description : This class is used to manage the inventory UI and handle item interactions between the player and the inventory.
+   @ Description : This class is used to manage the inventory UI and handle itemData interactions between the player and the inventory.
    @ Attached at : UI -> InventoryUI
    @ Methods : =============================================
                [public]
                - IsInventoryOpen() : Check if the inventory is open.
                - ToggleInventory() : Toggle the inventory UI on and off.
-               - AddItem() : Add an item to the inventory.
-               - SelectItem() : Handle item slot selection.
+               - AddItem() : Add an itemData to the inventory.
+               - SelectItem() : Handle itemData slot selection.
                - OnUseButton() : Handle the use button click event.
                - OnDropButton() : Handle the drop button click event.
                =============================================
                [private]
                - InventoryInit() : Initialize the inventory UI.
-               - ClearSelectedItemInfo() : Clear the selected item information in the UI.
-               - RemoveSelectedItem() : Remove the selected item from the inventory.
+               - ClearSelectedItemInfo() : Clear the selected itemData information in the UI.
+               - RemoveSelectedItem() : Remove the selected itemData from the inventory.
                - UpdateUI() : Update the inventory UI.
-               - GetItemSlot() : Get the item slot for an item (already in the inventory).
-               - GetEmptySlot() : Get an empty item slot from the inventory.
-               - DiscardItem() : Handle the case when there is no empty slot for a new item.
+               - GetItemSlot() : Get the itemData slot for an itemData (already in the inventory).
+               - GetEmptySlot() : Get an empty itemData slot from the inventory.
+               - DiscardItem() : Handle the case when there is no empty slot for a new itemData.
                =============================================
 */
 
@@ -36,6 +36,7 @@ public class InventoryUI : MonoBehaviour
     [Header("Connected Components")]
     private PlayerController playerController;
     private PlayerCondition playerCondition;
+    private PlayerEquipment playerEquipment;
 
     [Header("Inventory Settings")]
     public ItemSlot[] itemSlots;
@@ -54,6 +55,7 @@ public class InventoryUI : MonoBehaviour
     public GameObject dropButton;
     private ItemData selectedItem;
     private int selectedItemIndex = 0;
+    private int EquippedItemIndex = 0;
     #endregion
 
 
@@ -65,6 +67,7 @@ public class InventoryUI : MonoBehaviour
     {
         playerController = CharacterManager.Instance.Player.playerController;
         playerCondition = CharacterManager.Instance.Player.playerCondition;
+        playerEquipment = CharacterManager.Instance.Player.playerEquipment;
         itemDropPosition = CharacterManager.Instance.Player.itemDropPosition;
 
         playerController.inventoryEvent += ToggleInventory;
@@ -113,7 +116,7 @@ public class InventoryUI : MonoBehaviour
         // 비어있는 슬롯을 성공적으로 가져왔다면
         if (emptySlot != null)
         {
-            emptySlot.item = itemData;
+            emptySlot.itemData = itemData;
             emptySlot.quantity = 1;
             UpdateUI();
             CharacterManager.Instance.Player.itemData = null;
@@ -127,9 +130,9 @@ public class InventoryUI : MonoBehaviour
 
     public void SelectItem(int itemIndex)
     {
-        if (itemSlots[itemIndex].item == null) return;
+        if (itemSlots[itemIndex].itemData == null) return;
 
-        selectedItem = itemSlots[itemIndex].item;
+        selectedItem = itemSlots[itemIndex].itemData;
         selectedItemIndex = itemIndex;
 
         selectedItemName.text = selectedItem.itemName;
@@ -151,6 +154,7 @@ public class InventoryUI : MonoBehaviour
         dropButton.SetActive(true);
     }
 
+    // Used for buttons -------------------
     public void OnUseButton()
     {
         if (selectedItem.itemType == ItemType.Consumable)
@@ -166,6 +170,10 @@ public class InventoryUI : MonoBehaviour
                     case ConsumableType.Hunger:
                         playerCondition.Eat(selectedItem.consumables[i].value);
                         break;
+
+                    case ConsumableType.SpeedBoost:
+                        playerCondition.ApplySpeedBoost(selectedItem.consumables[i].value);
+                        break;
                 }
             }
 
@@ -178,6 +186,27 @@ public class InventoryUI : MonoBehaviour
         DiscardItem(selectedItem);
         RemoveSelectedItem();
     }
+
+    public void OnEquipButton()
+    {
+        if (itemSlots[EquippedItemIndex].equipped)
+        {
+            UnequipEquipable(EquippedItemIndex);
+        }
+
+        itemSlots[selectedItemIndex].equipped = true;
+        EquippedItemIndex = selectedItemIndex;
+        playerEquipment.EquipItem(selectedItem);
+        UpdateUI();
+
+        SelectItem(selectedItemIndex);
+    }
+
+    public void OnUnequipButton()
+    {
+        UnequipEquipable(selectedItemIndex);
+    }
+    // ------------------------------------
     #endregion
 
 
@@ -220,7 +249,7 @@ public class InventoryUI : MonoBehaviour
         if (itemSlots[selectedItemIndex].quantity <= 0)
         {
             selectedItem = null;
-            itemSlots[selectedItemIndex].item = null;
+            itemSlots[selectedItemIndex].itemData = null;
             selectedItemIndex = -1;
             ClearSelectedItemInfo();
         }
@@ -228,12 +257,24 @@ public class InventoryUI : MonoBehaviour
         UpdateUI();
     }
 
+    private void UnequipEquipable(int index)
+    {
+        itemSlots[index].equipped = false;
+        playerEquipment.UnequipItem();
+        UpdateUI();
+
+        if (selectedItemIndex == index)
+        {
+            SelectItem(selectedItemIndex);
+        }
+    }
+
     // Used in AddItem() Method -------------------
     private void UpdateUI()
     {
         for(int i = 0; i <itemSlots.Length; i++)
         {
-            if (itemSlots[i].item != null)
+            if (itemSlots[i].itemData != null)
             {
                 itemSlots[i].SetItemDataToSlot();
             }
@@ -248,7 +289,7 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i < itemSlots.Length; i++)
         {
-            if (itemSlots[i].item == itemData && itemSlots[i].quantity < itemData.maxStackAmount)
+            if (itemSlots[i].itemData == itemData && itemSlots[i].quantity < itemData.maxStackAmount)
             {
                 return itemSlots[i];
             }
@@ -260,7 +301,7 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = 0; i< itemSlots.Length; i++)
         {
-            if (itemSlots[i].item == null)
+            if (itemSlots[i].itemData == null)
             {
                 return itemSlots[i];
             }
