@@ -23,6 +23,9 @@ public class PlayerInteraction : MonoBehaviour
     //     [Inspector Window]
     // ========================== //
     #region [Inspector Window]
+    [Header("Connected Components")]
+    private Rigidbody rigidbody;
+
     [Header("Player Interaction Settings")]
     public float checkRate = 0.05f;
     public float lastCheckTime;
@@ -45,6 +48,8 @@ public class PlayerInteraction : MonoBehaviour
     void Start()
     {
         attachedCamera = Camera.main;
+        rigidbody = GetComponent<Rigidbody>();
+        Debug.Log(rigidbody);
     }
     void Update()
     {
@@ -89,5 +94,33 @@ public class PlayerInteraction : MonoBehaviour
         interactionPrompt.gameObject.SetActive(true);
         promptText.text = currentInteractableInfo.GetInteractionPrompt();
     }
+
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        // ---- for moving platforms -----
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(collision.transform);
+        }
+
+        // ---- for jumping platforms -----
+        if (collision.gameObject.tag == "JumpPanel")
+        {
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, 1f, rigidbody.velocity.z);
+
+            float jumpForce = 500f;
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "MovingPlatform")
+        {
+            transform.SetParent(null);
+        }
+    }
     #endregion
 }
+

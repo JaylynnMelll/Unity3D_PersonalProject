@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpCount < maxJumpCount)
         {
-            rigidBody.velocity = new Vector3(rigidBody.velocity.x, 2, rigidBody.velocity.z);
+            rigidBody.velocity = new Vector3(rigidBody.velocity.x, 3, rigidBody.velocity.z);
             rigidBody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
         }
