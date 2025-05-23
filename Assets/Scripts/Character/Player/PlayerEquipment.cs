@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* [ClassINFO : PlayerEquipment]
+   @ Description : This class is used to manage the player's equipment, allowing them to equip and unequip items.
+   @ Attached at : Player (gameObject)
+   @ Methods : ============================================
+               [public]
+               - EquipItem() : Equip an item based on the provided ItemData.
+               - UnequipItem() : Unequip the currently equipped item.
+               - OnAttackInput() : Handle attack input for the currently equipped item.
+               ============================================
+               [private]
+               - None
+               ============================================
+*/
+
 public class PlayerEquipment : MonoBehaviour
 {
     // =========================== //

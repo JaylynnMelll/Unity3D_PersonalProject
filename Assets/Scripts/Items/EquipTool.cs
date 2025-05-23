@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/* [ClassINFO : EquipTool]
+   @ Description : This class is used to make a tool that can be used to attack or gather resources.
+   @ Attached at : Equip_items(prefab)
+   @ Methods : ============================================
+               [public]
+               - OnAttackInput() : Handles the attack input for the tool.
+               ============================================
+               [private]
+               - OnCanAttack() : Handles the cooldown for the attack input.
+               ============================================
+*/
+
 public class EquipTool : Equip
 {
     // ========================== //

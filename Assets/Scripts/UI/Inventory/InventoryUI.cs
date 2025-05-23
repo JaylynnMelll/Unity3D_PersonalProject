@@ -15,11 +15,14 @@ using UnityEngine.UI;
                - SelectItem() : Handle itemData slot selection.
                - OnUseButton() : Handle the use button click event.
                - OnDropButton() : Handle the drop button click event.
+               - OnEquipButton() : Handle the equip button click event.
+               - OnUnequipButton() : Handle the unequip button click event.
                =============================================
                [private]
                - InventoryInit() : Initialize the inventory UI.
                - ClearSelectedItemInfo() : Clear the selected itemData information in the UI.
                - RemoveSelectedItem() : Remove the selected itemData from the inventory.
+               - UnequipEquipable() : Handle the unequip action for equipable items.
                - UpdateUI() : Update the inventory UI.
                - GetItemSlot() : Get the itemData slot for an itemData (already in the inventory).
                - GetEmptySlot() : Get an empty itemData slot from the inventory.

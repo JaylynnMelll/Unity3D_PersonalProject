@@ -4,7 +4,7 @@ using UnityEngine;
 
 /* [ClassINFO : ConditionManager]
    @ Description : This class holds the condition bars and act as a manager for them.
-   @ Attached at : UI -> ConditionsUI
+   @ Attached at : UI -> GameUI
    @ Methods : =============================================
                [public]
                - None
