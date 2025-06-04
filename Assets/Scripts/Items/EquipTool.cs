@@ -22,11 +22,13 @@ public class EquipTool : Equip
     #region [Inspector Window]
     [Header("Connected Components")]
     private Animator animator;
+    private Camera camera;
 
     [Header("Equipable Info")]
     public float attackRate;
     public float attackDistance;
     public bool attacking;
+    public float staminaUsage;
 
     [Header("ResourceGathering")]
     public bool doesGatherResources;
@@ -43,6 +45,7 @@ public class EquipTool : Equip
     private void Start()
     {
         animator = GetComponent<Animator>();
+        camera = Camera.main;
     }
     #endregion
 
@@ -54,12 +57,27 @@ public class EquipTool : Equip
     {
         if (!attacking)
         {
+            if (CharacterManager.Instance.Player.playerCondition.UseStamina(staminaUsage))
             attacking = true;
             animator.SetTrigger("Attack");
             Invoke("OnCanAttack", attackRate);
         }
     }
-    #endregion  
+
+    public void OnHit()
+    {
+        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, attackDistance))
+        {
+            if (doesGatherResources && hit.collider.TryGetComponent(out Resource resource))
+            {
+                resource.Gather(hit.point, hit.normal);
+            }
+        }
+    }
+    #endregion
 
     // ========================== //
     //     [private Methods]
